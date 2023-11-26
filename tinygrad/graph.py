@@ -1,8 +1,5 @@
 import os, atexit, itertools
-try:
-  import networkx as nx  # type: ignore
-except ImportError:
-  nx = None # graph won't work
+import networkx as nx
 from collections import defaultdict
 from typing import Dict, List, Optional
 from tinygrad.ops import UnaryOps, BinaryOps, ReduceOps, MovementOps, LoadOps, FusedOps, Op, OpType, LazyOp, get_buffers, get_lazyops
@@ -14,7 +11,7 @@ GRAPH, PRUNEGRAPH, GRAPHPATH = getenv("GRAPH", 0), getenv("PRUNEGRAPH", 0), gete
 
 # **** debugging and graphing ****
 
-G = nx.DiGraph() if nx is not None else None
+G = nx.DiGraph()
 cnts: Dict[OpType, int] = defaultdict(int)
 if DEBUG >= 2:
   def print_globalcounters():
